@@ -126,6 +126,31 @@ vows.describe('general module tests').addBatch({
       assert.isArray(URLs);
     }
   },
+    'when creating a short url and specify the hash 2': {
+        topic: function () {
+            var
+                specifiedHash = 'angie',
+                context = this;
+            short.generate({
+                hash: specifiedHash,
+                URL: 'https://www.google.com'
+            }).then(function(){
+                short.generate({
+                    hash: specifiedHash,
+                    URL: 'https://www.google.com'
+                }).then(function (shortURLObject) {
+                    context.callback(null, shortURLObject);
+                }, function (err) {
+                    context.callback(err, null);
+                });
+            })
+
+        },
+        'and result to Duplicate Key Error': function (err, shortURLObject) {
+          // console.log('result', err, shortURLObject);
+            assert.equal(err.message, 'Duplicate Key Error');
+        }
+    },
 
   'when creating a short url with data, updating and retrieving it':{
     topic:function() {

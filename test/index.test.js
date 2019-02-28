@@ -83,6 +83,25 @@ vows.describe('general module tests').addBatch({
     }
   },
 
+    'when creating a short url and specify the hash 2': {
+        topic: function () {
+            var
+                specifiedHash = 'angie',
+                context = this;
+            short.generate({
+                hash: specifiedHash,
+                URL: 'https://www.google.com'
+            }).then(function (shortURLObject) {
+                context.callback(null, shortURLObject);
+            }, function (err) {
+                context.callback(err, null);
+            });
+        },
+        'and shortURL.URL should be "https://www.google.com"': function (err, shortURLObject) {
+            assert.equal(err.message, 'Duplicate Key Error');
+        }
+    },
+
   'when creating a short url for an existing url and specifying the hash': {
     topic: function () {
       var context = this, url = 'http://www.nyan.cat/';

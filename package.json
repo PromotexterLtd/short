@@ -67,7 +67,8 @@
     "bluebird": "^3.5.3",
     "mongoose": "4.0.6",
     "node-promise": "0.5.8",
-    "short-id": "0.1.0-1"
+    "short-id": "0.1.0-1",
+    "shortid": "^2.2.14"
   },
   "devDependencies": {
     "vows": "0.7.0"
